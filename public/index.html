@@ -7,22 +7,45 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <svg class="logo" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="#2b6b2b" d="M12 2C8 6 6 8 6 12s2 6 6 8c4-2 6-4 6-8s-2-6-6-10z"/></svg>
+          <h1>PlantCare Assistant</h1>
+        </div>
+        <p class="tag">Quick plant photo analysis · watering & care tips</p>
+      </div>
+    </header>
+
     <main class="container">
-      <h1>PlantCare Assistant</h1>
+      <section class="panel">
+        <form id="uploadForm" class="upload-form" aria-label="Upload plant photo">
+          <label for="photoInput" class="file-card" id="fileCard">
+            <input type="file" name="photo" id="photoInput" accept="image/*" aria-describedby="fileHelp" />
+            <div class="file-content">
+              <svg class="camera" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true"><path fill="#4ea84e" d="M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+              <div>
+                <strong>Choose or drop a photo</strong>
+                <div id="fileHelp" class="muted">JPEG or PNG · max 10MB</div>
+              </div>
+            </div>
+          </label>
 
-      <form id="uploadForm">
-        <label class="file-card">
-          <input type="file" name="photo" id="photoInput" accept="image/*" />
-          <span>Select or drop a photo</span>
-        </label>
+          <div class="preview" id="preview" aria-live="polite"></div>
 
-        <div class="preview" id="preview"></div>
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Analyze Photo</button>
+            <button type="button" id="clearBtn" class="btn ghost">Clear</button>
+          </div>
+        </form>
+      </section>
 
-        <button type="submit" class="btn">Analyze Photo</button>
-      </form>
-
-      <section id="results" class="cards"></section>
+      <section id="results" class="cards" aria-live="polite"></section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">Made with care · <a href="#">Privacy</a></div>
+    </footer>
 
     <script src="/app.js"></script>
   </body>
