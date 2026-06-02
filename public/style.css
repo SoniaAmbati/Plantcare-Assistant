@@ -16,14 +16,41 @@ body{margin:0;background:linear-gradient(180deg,var(--bg),#f0faf0);color:#183a18
 .brand{display:flex;align-items:center;gap:12px}
 .brand h1{font-size:20px;margin:0;color:var(--accent-dark)}
 .tag{margin-left:auto;color:var(--muted);font-size:13px}
+:root{
+  --bg:#eef9ee;
+  --card:#ffffff;
+  --accent:#2ea34a;
+  --accent-2:#66d07a;
+  --accent-dark:#246a2a;
+  --muted:#5b6e5b;
+  --glass: rgba(255,255,255,0.82);
+  --shadow: 0 10px 30px rgba(28,72,28,0.06);
+}
+*{box-sizing:border-box}
+:root,body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+h1,h2,h3, .brand h1{font-family:Poppins, Inter, system-ui}
 .panel{background:var(--glass);border-radius:14px;padding:18px;border:1px solid rgba(40,90,40,0.06)}
 .upload-form{display:grid;grid-template-columns:1fr;gap:14px}
 .file-card{display:flex;align-items:center;gap:14px;padding:18px;border-radius:12px;border:2px dashed rgba(64,128,64,0.12);background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,255,250,0.85));cursor:pointer;transition:box-shadow .18s,transform .12s}
 .file-card:focus-within,.file-card.dragover{box-shadow:0 8px 30px rgba(46,122,46,0.08);transform:translateY(-2px)}
+.preview img:hover{transform:scale(1.02)}
 .file-card input{display:none}
 .file-content{display:flex;align-items:center;gap:12px}
 .file-content strong{display:block}
 .muted{color:var(--muted);font-size:13px}
+
+/* Skeleton shimmer for loading results */
+.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg, #f6f8f6, #f3f6f3);border-radius:10px;min-height:56px}
+.skeleton::after{content:'';position:absolute;left:-150%;top:0;height:100%;width:150%;background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));animation:shimmer 1.2s infinite}
+@keyframes shimmer{100%{transform:translateX(150%)}}
+
+/* reveal animation for result cards */
+.card.reveal{opacity:0;transform:translateY(8px) scale(.998);animation:reveal .36s ease forwards}
+@keyframes reveal{to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* subtle background organic shapes */
+.site-header{background:linear-gradient(90deg, rgba(46,136,46,0.06), rgba(107,197,107,0.01));backdrop-filter:blur(4px)}
+.site-footer{padding:18px 0;color:var(--muted);font-size:13px;border-top:1px solid rgba(0,0,0,0.03);margin-top:auto}
 .camera{opacity:0.95}
 .preview{min-height:88px;display:flex;align-items:center;gap:12px}
 .preview img{max-width:260px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 24px rgba(32,74,33,0.06);transition:transform .18s}

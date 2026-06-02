@@ -61,6 +61,8 @@ form.addEventListener('submit', async (e) => {
   if (!photoInput.files[0]) return alert('Please select a photo.');
 
   results.innerHTML = '<div class="card"><div class="loader"></div> Analyzing…</div>';
+  // show skeleton placeholders while server processes image
+  createSkeletons(3);
 
   const fd = new FormData();
   fd.append('photo', photoInput.files[0]);
@@ -86,9 +88,10 @@ function renderResults(json){
     ['Care', suggestions.care || 'General care not provided.']
   ];
 
-  map.forEach(([title, text]) => {
+  map.forEach(([title, text], i) => {
     const c = document.createElement('div');
-    c.className = 'card';
+    c.className = 'card reveal';
+    c.style.animationDelay = (i * 80) + 'ms';
     c.innerHTML = `<h3>${escapeHtml(title)}</h3><div class="meta">${escapeHtml(text)}</div>`;
     results.appendChild(c);
   });
@@ -102,4 +105,14 @@ function renderResults(json){
 }
 
 function escapeHtml(s){ return String(s || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+function createSkeletons(count){
+  results.innerHTML = '';
+  for(let i=0;i<count;i++){
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = `<div class="skeleton" style="height:56px;"></div>`;
+    results.appendChild(c);
+  }
+}
 
