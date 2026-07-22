@@ -18,4 +18,4 @@ Notes:
 - ensure build tools/network access if that fails.
 
 
-Made for all plant lovers <3
+Made for all plant lovers 
